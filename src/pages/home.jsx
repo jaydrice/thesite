@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { ArrowRight, Mail, Linkedin, Github, ArrowDown, Sparkles, Download, FileText, Award, Briefcase, Code, Coffee } from 'lucide-react';
