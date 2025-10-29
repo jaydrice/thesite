@@ -235,7 +235,6 @@ const CATEGORIES = Object.keys(PROJECTS_DATA);
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null);
 
   const getIconForType = (type) => {
     switch (type) {
@@ -257,7 +256,7 @@ export default function Projects() {
   const projects = getProjectsToShow();
 
   return (
-    <section className="min-h-screen bg-black text-white py-20 px-6 md:px-12">
+    <section className="min-h-screen bg-black text-white py-20 px-4 sm:px-6 md:px-12">
       <div className="max-w-screen-2xl mx-auto">
         {/* Header */}
         <motion.div 
@@ -266,47 +265,59 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-6">THE WORK</h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6">THE WORK</h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto px-4">
             A showcase of my diverse projects across cybersecurity, creative arts, and everything in between
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Category Filter - UPDATED FOR MOBILE */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-12 px-2"
         >
           <Button
             onClick={() => setSelectedCategory('all')}
             variant={selectedCategory === 'all' ? 'default' : 'outline'}
-            className={`${
+            className={`flex-shrink-0 ${
               selectedCategory === 'all' 
                 ? 'bg-white text-black hover:bg-gray-200' 
                 : 'bg-transparent text-white border-white/20 hover:bg-white/10'
-            } transition-all duration-300`}
+            } transition-all duration-300 text-xs sm:text-sm md:text-base h-9 sm:h-10 md:h-11 px-3 sm:px-4`}
           >
-            <Filter className="w-4 h-4 mr-2" />
-            All Projects
+            <Filter className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
+            All
           </Button>
           
           {CATEGORIES.map((category) => {
             const CategoryIcon = PROJECTS_DATA[category].icon;
+            const categoryTitle = PROJECTS_DATA[category].title;
+            // Short labels for mobile
+            const shortLabels = {
+              cybersecurity: "Cyber",
+              acting: "Acting", 
+              gaming: "Gaming",
+              voice: "Voice",
+              writing: "Writing",
+              mc: "MC"
+            };
+            
             return (
               <Button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? 'default' : 'outline'}
-                className={`${
+                className={`flex-shrink-0 ${
                   selectedCategory === category 
                     ? 'bg-white text-black hover:bg-gray-200' 
                     : 'bg-transparent text-white border-white/20 hover:bg-white/10'
-                } transition-all duration-300`}
+                } transition-all duration-300 text-xs sm:text-sm md:text-base h-9 sm:h-10 md:h-11 px-3 sm:px-4`}
               >
-                <CategoryIcon className="w-4 h-4 mr-2" />
-                {PROJECTS_DATA[category].title}
+                <CategoryIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
+                <span className="hidden sm:inline">{categoryTitle}</span>
+                <span className="sm:hidden">{shortLabels[category]}</span>
               </Button>
             );
           })}
@@ -315,7 +326,7 @@ export default function Projects() {
         {/* Projects Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-2 sm:px-0"
         >
           {projects.map((project, index) => {
             const LinkIcon = getIconForType(project.type);
@@ -338,27 +349,33 @@ export default function Projects() {
                   {/* Image/Placeholder */}
                   <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${category.color} text-white`}>
-                        {category.title}
+                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20">
+                      <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${category.color} text-white`}>
+                        <span className="hidden sm:inline">{category.title}</span>
+                        <span className="sm:hidden">
+                          {category.title.includes('&') 
+                            ? category.title.split('&')[0].trim()
+                            : category.title.split(' ')[0]
+                          }
+                        </span>
                       </span>
                     </div>
-                    <div className="absolute top-4 right-4 z-20">
-                      <LinkIcon className="w-6 h-6 text-white/80 group-hover:text-white transition-colors" />
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+                      <LinkIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 group-hover:text-white transition-colors" />
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-gray-200 transition-colors">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 group-hover:text-gray-200 transition-colors line-clamp-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                    <p className="text-gray-400 text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                       {project.description}
                     </p>
                     
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
                       {project.tags.map((tag, tagIndex) => (
                         <span 
                           key={tagIndex}
@@ -370,11 +387,11 @@ export default function Projects() {
                     </div>
 
                     {/* Action Button */}
-                    <div className="mt-4 pt-4 border-t border-white/10">
+                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10">
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="w-full text-white hover:bg-white/10 transition-all duration-300 group/btn"
+                        className="w-full text-white hover:bg-white/10 transition-all duration-300 group/btn text-xs sm:text-sm h-9 sm:h-10"
                         onClick={(e) => {
                           e.stopPropagation();
                           project.type === 'pdf' 
@@ -384,17 +401,17 @@ export default function Projects() {
                       >
                         {project.type === 'youtube' ? (
                           <>
-                            <Play className="w-4 h-4 mr-2" />
+                            <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                             Watch
                           </>
                         ) : project.type === 'pdf' ? (
                           <>
-                            <FileText className="w-4 h-4 mr-2" />
+                            <FileText className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                             View PDF
                           </>
                         ) : (
                           <>
-                            <ExternalLink className="w-4 h-4 mr-2" />
+                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                             View Project
                           </>
                         )}
@@ -423,12 +440,12 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-20"
+          className="text-center mt-16 sm:mt-20 px-4"
         >
-          <p className="text-gray-400 text-lg mb-6">Like what you see? Let's create something amazing together.</p>
+          <p className="text-gray-400 text-base sm:text-lg mb-6">Like what you see? Let's create something amazing together.</p>
           <Button 
             size="lg" 
-            className="bg-white text-black hover:bg-gray-200 transition-all duration-300 text-lg px-8 py-6 font-semibold"
+            className="bg-white text-black hover:bg-gray-200 transition-all duration-300 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 font-semibold"
             onClick={() => window.location.href = '/#contact'}
           >
             GET IN TOUCH
