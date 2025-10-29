@@ -7,6 +7,8 @@ import { ArrowRight, Mail, Linkedin, Github, ArrowDown, Sparkles, Download, File
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [selectedCert, setSelectedCert] = useState(null);
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -21,19 +23,27 @@ export default function Home() {
   };
 
   const stats = [
-    { icon: Briefcase, number: "10+", label: "Years Experience" },
-    { icon: Award, number: "50+", label: "Projects Completed" },
-    { icon: Code, number: "15+", label: "Technologies Mastered" },
+    { icon: Briefcase, number: "4+", label: "Years Experience" },
+    { icon: Award, number: "20+", label: "Projects Completed" },
+    { icon: Code, number: "8+", label: "Technologies Mastered" },
     { icon: Coffee, number: "∞", label: "Cups of Coffee" }
   ];
 
   const skills = [
     { name: "Creative Direction", level: 95 },
-    { name: "Web Development", level: 92 },
-    { name: "UI/UX Design", level: 88 },
+    { name: "Technical SKills", level: 80 },
+    { name: "Cisco Packet Tracer", level: 75 },
     { name: "Copywriting", level: 90 },
-    { name: "Brand Strategy", level: 85 },
-    { name: "Front-end Dev", level: 93 }
+    { name: "Threat Analysis", level: 70 },
+    { name: "Voice Acting", level: 85 }
+  ];
+
+  const certifications = [
+    { title: 'Introduction To Packet Tracer', file: '_certificate_jkumass1-stu-vistula-edu-pl_9ea8211f-5953-4835-bc0a-cd751746f5dd.pdf' },
+    { title: 'Introduction To IoT and Digital Transformation', file: '_certificate_jkumass1-stu-vistula-edu-pl_2488985d-45ef-49f6-9096-1071d9667966.pdf' },
+    { title: 'Introduction To Data Science', file: '_certificate_jkumass1-stu-vistula-edu-pl_c634d849-35e3-4177-a397-493be7b791d7.pdf' },
+    { title: 'Computer Hardware Basics', file: '_certificate_jkumass1-stu-vistula-edu-pl_666acec6-4dfc-40e1-8f1f-4188b2dcd783%20%281%29.pdf' },
+    { title: 'Introduction To Cybersecurity', file: '_certificate_jkumass1-stu-vistula-edu-pl_face61ee-d20a-4408-a639-2259263b04cb%20%281%29.pdf' }
   ];
 
   return (
@@ -130,7 +140,7 @@ export default function Home() {
             <motion.h1 
               className="text-7xl md:text-9xl font-bold tracking-tight mb-8 leading-none"
             >
-              Joshua Kumassi
+              Joshua T Kumassi
             </motion.h1>
           </motion.div>
 
@@ -141,10 +151,10 @@ export default function Home() {
             className="space-y-6"
           >
             <p className="text-2xl md:text-4xl font-light text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Cyber Security Analyst • Writer • Voice Actor • IT Technician
+              Cyber Security Analyst • Writer • Game Tester/Gamer • Voice Over Artist •  Actor • IT Technician • MC 
             </p>
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-              Crafting digital experiences that combine design excellence with technical innovation
+            A problem solver with a knack for finding fun and creative approaches to solutions.
             </p>
           </motion.div>
 
@@ -190,25 +200,26 @@ export default function Home() {
           >
             <div className="space-y-8">
               <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-                Technically all of the above,<br />
-                <span className="text-gray-400">and more.</span>
+                You should know my name by now but if not,<br />
+                <span className="text-gray-400">its Joshua Kumassi.</span>
               </h2>
               
               <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
                 <p className="text-xl md:text-2xl leading-relaxed">
-                  But instead of skimming some elevator pitch I rewrote 487 times, why don't you just scroll down to see the type of work I've been known to make?
+                I am currently a student at Vistula University, pursuing a Bachelor's degree in Computer Science with a specialization in Cybersecurity.
+
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                  What kind of creative starts their portfolio like this? The kind who doesn't fit into outmoded specializations, that's what.
+                 Very odd about section this is right? but here's the gist of it.
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                  The more I learn how to do, the more I love my job. Sure, it's a challenge to categorize someone who can <span className="font-semibold">write compelling copy, direct creative projects, design interfaces, and build websites like this one</span>.
+                  The more I learn how to do, the more my portfolio grows. Sure, it's a challenge to categorize someone who can <span className="font-semibold">write compelling stories and content, direct creative projects, act, sing, MC events, record compelling voice overs, and still be IT oriented with a number of certificates under my belt in varying capacities</span>.
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                  But that's not my problem—it's yours. And if you want, I can solve it along with all your other problems.
+                  But that's not my problem—it's yours. And if you want, I can solve it along with all your other problems you throw my way.
                 </p>
               </div>
             </div>
@@ -246,7 +257,7 @@ export default function Home() {
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
               THE RECEIPTS
             </h2>
-            <p className="text-xl text-gray-400">AKA: My resume, but make it fun</p>
+            <p className="text-xl text-gray-400">AKA: My resume, but made fun</p>
           </motion.div>
 
           {/* Stats Grid */}
@@ -316,6 +327,39 @@ export default function Home() {
           </motion.div>
 
           {/* Download Resume Card */}
+    
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-center">Certifications</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {certifications.map((cert, idx) => (
+                <motion.div
+                  key={cert.file}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                >
+                  <Card className="p-6 bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer">
+                    <div onClick={() => setSelectedCert(cert)} className="flex items-center gap-4">
+                      <div className="flex-shrink-0">
+                        <Award className="w-10 h-10 text-gray-300" />
+                      </div>
+                      <div className="text-left">
+                        <div className="font-semibold text-lg text-white">{cert.title}</div>
+                        <div className="text-sm text-gray-400">View certificate (PDF)</div>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -339,6 +383,70 @@ export default function Home() {
               >
                 <FileText className="w-64 h-64 text-white" />
               </motion.div>
+
+{/* CERTIFICATE MODAL */}
+<motion.div
+  className={`fixed inset-0 z-[100] ${
+    selectedCert ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  }`}
+  initial={{ opacity: 0 }}
+  animate={{ opacity: selectedCert ? 1 : 0 }}
+  transition={{ duration: 0.3 }}
+>
+  {/* Backdrop - Click to close */}
+  <div 
+    className="absolute inset-0 bg-black/90 backdrop-blur-lg cursor-pointer"
+    onClick={() => setSelectedCert(null)}
+  />
+  
+  {/* Modal Container - Full Screen */}
+  <motion.div
+    initial={{ scale: 0.9, opacity: 0 }}
+    animate={{ scale: selectedCert ? 1 : 0.9, opacity: selectedCert ? 1 : 0 }}
+    transition={{ duration: 0.3, type: "spring", damping: 25 }}
+    className="relative w-full h-full flex flex-col"
+  >
+    {/* Header */}
+    <div className="flex items-center justify-between p-6 bg-black/80 backdrop-blur-sm border-b border-white/10">
+      <h3 className="text-xl font-semibold text-white truncate max-w-[80%]">
+        {selectedCert?.title}
+      </h3>
+      <button
+        onClick={() => setSelectedCert(null)}
+        className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white hover:text-gray-300 text-xl font-bold z-10"
+      >
+        ✕
+      </button>
+    </div>
+
+    {/* PDF Container - Full remaining height */}
+    <div className="flex-1 min-h-0">
+      {selectedCert && (
+        <iframe
+          src={`/${selectedCert.file}`}
+          className="w-full h-full border-none"
+          title={selectedCert.title}
+          loading="lazy"
+        />
+      )}
+    </div>
+
+    {/* Footer */}
+    <div className="p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
+      <div className="flex justify-between items-center text-sm text-gray-400">
+        <span>PDF Certificate</span>
+        <Button
+          size="sm"
+          className="bg-white/10 hover:bg-white/20 text-white border-0"
+          onClick={() => window.open(`/${selectedCert?.file}`, '_blank')}
+        >
+          <Download className="w-4 h-4 mr-2" />
+          Open in New Tab
+        </Button>
+      </div>
+    </div>
+  </motion.div>
+</motion.div>
 
               <div className="relative z-10">
                 <motion.div
@@ -364,7 +472,7 @@ export default function Home() {
                     className="bg-white text-black hover:bg-gray-200 transition-all duration-300 text-xl px-10 py-7 font-bold group"
                   >
                     <Download className="mr-3 w-6 h-6 group-hover:animate-bounce" />
-                    DOWNLOAD RESUME
+                    <a href="/JoshuaTKumassi.pdf" download>Download Resume Here</a>
                     <motion.span
                       animate={{ x: isHovering ? 5 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -376,7 +484,7 @@ export default function Home() {
                 </motion.div>
 
                 <p className="text-sm text-gray-500 mt-6">
-                  PDF • Last updated December 2024 • 2 pages of pure awesome
+                  PDF • Last updated July • 2 pages of pure awesome
                 </p>
               </div>
             </Card>
@@ -424,35 +532,35 @@ export default function Home() {
           </div>
 
           <p className="text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Got a project? A problem to solve? Or just want to chat about that thing you saw on the internet?
+            Got a project? A problem to solve? A video that needs an extra kick? Or an event that needs moderation?
           </p>
           
           <motion.a
-            href="mailto:hello@yourname.com"
+            href="mailto:kumassijoshua14@gmail.com"
             whileHover={{ scale: 1.05 }}
             className="inline-block text-4xl md:text-5xl font-bold text-black hover:text-gray-600 transition-colors duration-300"
           >
-            hello@yourname.com
+            kumassijoshua14@gmail.com
           </motion.a>
 
           <div className="flex justify-center gap-8 pt-8">
             <motion.a
               whileHover={{ y: -4, scale: 1.1 }}
-              href="#"
+              href="https://www.linkedin.com/in/joshua-kumassi-80915b306/"
               className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
             >
               <Linkedin className="w-6 h-6" />
             </motion.a>
             <motion.a
               whileHover={{ y: -4, scale: 1.1 }}
-              href="#"
+              href="https://github.com/jaydrice"
               className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
             >
               <Github className="w-6 h-6" />
             </motion.a>
             <motion.a
               whileHover={{ y: -4, scale: 1.1 }}
-              href="#"
+              href="mailto:kumassijoshua14@gmail.com"
               className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
             >
               <Mail className="w-6 h-6" />
@@ -468,9 +576,9 @@ export default function Home() {
             © 2024 Joshua Kumassi. Built with passion and probably too much coffee.
           </p>
           <div className="flex gap-8 text-sm text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">GitHub</a>
-            <a href="#" className="hover:text-white transition-colors">Email</a>
+            <a href="https://www.linkedin.com/in/joshua-kumassi-80915b306/" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://github.com/jaydrice" className="hover:text-white transition-colors">GitHub</a>
+            <a href="https://www.instagram.com/jay.d.rice/" className="hover:text-white transition-colors">Instagram</a>
           </div>
         </div>
       </footer>
