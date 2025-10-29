@@ -30,7 +30,7 @@ export default function Home() {
   ];
 
   const skills = [
-    { name: "Creative Direction", level: 95 },
+    { name: "Web Development", level: 95 },
     { name: "Technical SKills", level: 80 },
     { name: "Cisco Packet Tracer", level: 75 },
     { name: "Copywriting", level: 90 },
@@ -200,8 +200,8 @@ export default function Home() {
           >
             <div className="space-y-8">
               <h2 className="text-4xl md:text-6xl font-bold leading-tight">
-                You should know my name by now but if not,<br />
-                <span className="text-gray-400">its Joshua Kumassi.</span>
+                My name is Joshua Kumassi,<br />
+                <span className="text-gray-400">Here's a brief overview of who I am and the value I bring.</span>
               </h2>
               
               <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
@@ -211,15 +211,15 @@ export default function Home() {
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                 Very odd about section this is right? but here's the gist of it.
+                I am open to opportunities that enable me to grow and contribute in dynamic environments. With a strong interest in both technology and the arts, I have been dedicated to exploring the intersection of IT and creativity throughout my career. This unique combination allows me to approach challenges with both technical precision and artistic insight.
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                  The more I learn how to do, the more my portfolio grows. Sure, it's a challenge to categorize someone who can <span className="font-semibold">write compelling stories and content, direct creative projects, act, sing, MC events, record compelling voice overs, and still be IT oriented with a number of certificates under my belt in varying capacities</span>.
+                The more I learn, the more my portfolio grows. It’s not easy to categorize someone who can <span className="font-semibold">write compelling stories and content, direct creative projects, act, sing, host events, record engaging voiceovers, and design websites — including the one you’re viewing right now. Alongside my creative pursuits, I remain deeply rooted in IT, holding several certifications across various technical disciplines. This blend of art and technology defines both my skill set and my approach to every project I take on.</span>.
                 </p>
                 
                 <p className="text-lg leading-relaxed">
-                  But that's not my problem—it's yours. And if you want, I can solve it along with all your other problems you throw my way.
+                So if you’re looking for someone dedicated, creative, and ready to deliver results that matter — you’ve found the right person.
                 </p>
               </div>
             </div>
