@@ -233,7 +233,7 @@ export default function Home() {
                 size="lg"
                 className="bg-black text-white hover:bg-gray-800 transition-all duration-300 text-lg px-8 py-6 font-semibold"
               >
-                YEAH OKAY LET'S SEE IT
+                LET'S SEE IT
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>
