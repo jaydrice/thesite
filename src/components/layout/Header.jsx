@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line
@@ -6,20 +6,6 @@ import { motion } from 'framer-motion'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  // Scroll effect for header background
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      // Add background after scrolling 50px
-      setHasScrolled(scrollTop > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -31,23 +17,10 @@ export default function Header() {
 
   return (
     <>
-      <motion.nav 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 transition-all duration-300 ${
-          hasScrolled 
-            ? 'bg-white/5 backdrop-blur-md border-b border-white/10 mix-blend-normal' 
-            : 'mix-blend-difference'
-        }`}
-      >
+      <motion.nav initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 mix-blend-difference">
         <div className="max-w-screen-2xl mx-auto flex justify-between items-center">
           <Link to="/">
-            <motion.div 
-              whileHover={{ scale: 1.05 }} 
-              className={`text-lg font-bold tracking-tight cursor-pointer transition-colors duration-300 ${
-                hasScrolled ? 'text-gray-900' : 'text-white'
-              }`}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} className="text-lg font-bold tracking-tight cursor-pointer text-white">
               Joshua Kumassi
             </motion.div>
           </Link>
@@ -57,21 +30,15 @@ export default function Header() {
           >
             <motion.span 
               animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 8 : 0 }} 
-              className={`w-6 h-0.5 transition-all duration-300 group-hover:w-8 ${
-                hasScrolled ? 'bg-gray-900' : 'bg-white'
-              }`} 
+              className="w-6 h-0.5 bg-white group-hover:w-8 transition-all" 
             />
             <motion.span 
               animate={{ opacity: isMenuOpen ? 0 : 1 }} 
-              className={`w-6 h-0.5 transition-all duration-300 group-hover:w-8 ${
-                hasScrolled ? 'bg-gray-900' : 'bg-white'
-              }`} 
+              className="w-6 h-0.5 bg-white group-hover:w-8 transition-all" 
             />
             <motion.span 
               animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -8 : 0 }} 
-              className={`w-6 h-0.5 transition-all duration-300 group-hover:w-8 ${
-                hasScrolled ? 'bg-gray-900' : 'bg-white'
-              }`} 
+              className="w-6 h-0.5 bg-white group-hover:w-8 transition-all" 
             />
           </button>
         </div>
