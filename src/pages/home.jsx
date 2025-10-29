@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { useScroll, useTransform } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { ArrowRight, Mail, Linkedin, Github, ArrowDown, Sparkles, Download, FileText, Award, Briefcase, Code, Coffee } from 'lucide-react';
@@ -131,7 +131,7 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 max-w-5xl w-full text-center">
+        <div className="relative z-10 py-24 max-w-5xl w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -287,44 +287,44 @@ export default function Home() {
             })}
           </div>
 
-          {/* Skills Section */}
+          {/* Skills Section - Improved */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="mb-20"
+>
+  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-10 text-center px-4">
+    What I'm Really Good At
+  </h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto px-4">
+    {skills.map((skill, index) => (
+      <motion.div
+        key={skill.name}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className="space-y-2 p-3 md:p-0"
+      >
+        <div className="flex justify-between items-center">
+          <span className="text-base md:text-lg font-medium">{skill.name}</span>
+          <span className="text-sm text-gray-400">{skill.level}%</span>
+        </div>
+        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ width: 0 }}
+            whileInView={{ width: `${skill.level}%` }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-20"
-          >
-            <h3 className="text-3xl md:text-4xl font-bold mb-10 text-center">
-              What I'm Really Good At
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="space-y-2"
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-medium">{skill.name}</span>
-                    <span className="text-sm text-gray-400">{skill.level}%</span>
-                  </div>
-                  <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                      className="h-full bg-gradient-to-r from-white to-gray-400 rounded-full"
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            transition={{ duration: 1, delay: index * 0.1 }}
+            className="h-full bg-gradient-to-r from-white to-gray-400 rounded-full"
+          />
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
 
           {/* Download Resume Card */}
     
@@ -384,7 +384,7 @@ export default function Home() {
                 <FileText className="w-64 h-64 text-white" />
               </motion.div>
 
-{/* CERTIFICATE MODAL */}
+{/* CERTIFICATE MODAL - FIXED */}
 <motion.div
   className={`fixed inset-0 z-[100] ${
     selectedCert ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -399,32 +399,32 @@ export default function Home() {
     onClick={() => setSelectedCert(null)}
   />
   
-  {/* Modal Container - Full Screen */}
+  {/* Modal Container - Responsive */}
   <motion.div
     initial={{ scale: 0.9, opacity: 0 }}
     animate={{ scale: selectedCert ? 1 : 0.9, opacity: selectedCert ? 1 : 0 }}
     transition={{ duration: 0.3, type: "spring", damping: 25 }}
-    className="relative w-full h-full flex flex-col"
+    className="relative w-full h-full flex flex-col p-4"
   >
-    {/* Header */}
-    <div className="flex items-center justify-between p-6 bg-black/80 backdrop-blur-sm border-b border-white/10">
-      <h3 className="text-xl font-semibold text-white truncate max-w-[80%]">
+    {/* Header - Fixed height */}
+    <div className="flex items-center justify-between p-4 bg-black/80 backdrop-blur-sm border-b border-white/10 rounded-t-lg">
+      <h3 className="text-lg md:text-xl font-semibold text-white truncate max-w-[70%]">
         {selectedCert?.title}
       </h3>
       <button
         onClick={() => setSelectedCert(null)}
-        className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white hover:text-gray-300 text-xl font-bold z-10"
+        className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white hover:text-gray-300 text-lg font-bold"
       >
         ✕
       </button>
     </div>
 
-    {/* PDF Container - Full remaining height */}
-    <div className="flex-1 min-h-0">
+    {/* PDF Container - Flexible height */}
+    <div className="flex-1 min-h-0 bg-white rounded-b-lg">
       {selectedCert && (
         <iframe
           src={`/${selectedCert.file}`}
-          className="w-full h-full border-none"
+          className="w-full h-full border-none rounded-b-lg"
           title={selectedCert.title}
           loading="lazy"
         />
@@ -432,12 +432,12 @@ export default function Home() {
     </div>
 
     {/* Footer */}
-    <div className="p-4 bg-black/80 backdrop-blur-sm border-t border-white/10">
-      <div className="flex justify-between items-center text-sm text-gray-400">
+    <div className="p-3 bg-black/80 backdrop-blur-sm border-t border-white/10 rounded-b-lg mt-2">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-gray-400">
         <span>PDF Certificate</span>
         <Button
           size="sm"
-          className="bg-white/10 hover:bg-white/20 text-white border-0"
+          className="bg-white/10 hover:bg-white/20 text-white border-0 w-full sm:w-auto"
           onClick={() => window.open(`/${selectedCert?.file}`, '_blank')}
         >
           <Download className="w-4 h-4 mr-2" />
@@ -505,69 +505,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section - Bold & Direct */}
-      <section
-        id="contact"
-        className="min-h-screen flex items-center justify-center px-6 md:px-12 bg-white text-black"
+{/* Contact Section - Improved Responsiveness */}
+<section
+  id="contact"
+  className="min-h-screen flex items-center justify-center px-4 md:px-12 py-20 bg-white text-black"
+>
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+    className="max-w-4xl w-full text-center space-y-8 md:space-y-12"
+  >
+    <div className="space-y-4 md:space-y-6">
+      <motion.div
+        whileHover={{ rotate: 360 }}
+        transition={{ duration: 0.5 }}
+        className="inline-block"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl w-full text-center space-y-12"
-        >
-          <div className="space-y-6">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block"
-            >
-              <Sparkles className="w-16 h-16 mx-auto" />
-            </motion.div>
-            
-            <h2 className="text-6xl md:text-8xl font-bold tracking-tight">
-              LET'S MAKE<br />SOMETHING GREAT
-            </h2>
-          </div>
+        <Sparkles className="w-12 h-12 md:w-16 md:h-16 mx-auto" />
+      </motion.div>
+      
+      <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight leading-tight">
+        LET'S MAKE<br />SOMETHING GREAT
+      </h2>
+    </div>
 
-          <p className="text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Got a project? A problem to solve? A video that needs an extra kick? Or an event that needs moderation?
-          </p>
-          
+    <p className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
+      Got a project? A problem to solve? A video that needs an extra kick? Or an event that needs moderation?
+    </p>
+    
+    <motion.a
+      href="mailto:kumassijoshua14@gmail.com"
+      whileHover={{ scale: 1.05 }}
+      className="inline-block text-xl md:text-2xl lg:text-4xl font-bold text-black hover:text-gray-600 transition-colors duration-300 break-all px-4"
+    >
+      kumassijoshua14@gmail.com
+    </motion.a>
+
+    <div className="flex justify-center gap-6 pt-6 md:pt-8">
+      {[
+        { href: "https://www.linkedin.com/in/joshua-kumassi-80915b306/", icon: Linkedin },
+        { href: "https://github.com/jaydrice", icon: Github },
+        { href: "mailto:kumassijoshua14@gmail.com", icon: Mail }
+      ].map((social, index) => {
+        const Icon = social.icon;
+        return (
           <motion.a
-            href="mailto:kumassijoshua14@gmail.com"
-            whileHover={{ scale: 1.05 }}
-            className="inline-block text-4xl md:text-5xl font-bold text-black hover:text-gray-600 transition-colors duration-300"
+            key={index}
+            whileHover={{ y: -4, scale: 1.1 }}
+            href={social.href}
+            className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
           >
-            kumassijoshua14@gmail.com
+            <Icon className="w-5 h-5 md:w-6 md:h-6" />
           </motion.a>
-
-          <div className="flex justify-center gap-8 pt-8">
-            <motion.a
-              whileHover={{ y: -4, scale: 1.1 }}
-              href="https://www.linkedin.com/in/joshua-kumassi-80915b306/"
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
-            >
-              <Linkedin className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ y: -4, scale: 1.1 }}
-              href="https://github.com/jaydrice"
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
-            >
-              <Github className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ y: -4, scale: 1.1 }}
-              href="mailto:kumassijoshua14@gmail.com"
-              className="w-14 h-14 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-all duration-300"
-            >
-              <Mail className="w-6 h-6" />
-            </motion.a>
-          </div>
-        </motion.div>
-      </section>
+        );
+      })}
+    </div>
+  </motion.div>
+</section>
 
       {/* Footer */}
       <footer className="bg-black text-white py-12 px-6 md:px-12 border-t border-white/10">
