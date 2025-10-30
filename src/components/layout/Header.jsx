@@ -7,14 +7,6 @@ import { motion } from 'framer-motion'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
   return (
     <>
       <motion.nav initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 mix-blend-difference">
@@ -73,7 +65,10 @@ export default function Header() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : 20 }}
               transition={{ delay: (index + 1) * 0.1 }}
-              onClick={() => scrollToSection(item.toLowerCase())}
+              onClick={() => {
+                window.location.href = `/#${item.toLowerCase()}`;
+                setIsMenuOpen(false);
+              }}
               className="block text-5xl md:text-7xl font-bold text-white hover:text-gray-400 transition-colors duration-300"
             >
               {item}
