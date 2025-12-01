@@ -140,7 +140,7 @@ export default function ResumeSection() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" className="bg-white text-black hover:bg-gray-200 transition-all duration-300 text-xl px-10 py-7 font-bold group">
                   <Download className="mr-3 w-6 h-6 group-hover:animate-bounce" />
-                  <a href="/JoshuaTKumassi.pdf" download>Download Resume Here</a>
+                  <a href="/JoshuasNewCV.pdf" download>Download Resume Here</a>
                   <motion.span animate={{ x: isHovering ? 5 : 0 }} transition={{ duration: 0.3 }} className="ml-3">→</motion.span>
                 </Button>
               </motion.div>
